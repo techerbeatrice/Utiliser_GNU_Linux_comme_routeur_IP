@@ -16,18 +16,36 @@ Test, par exemple avec ping, qu'il est possible de joindre la première machine 
 
 ____
 
-PC n° 1 : 10.0.0.10/24    ipv6 fd35:255d:c32a::10/64   
-PC n° 2 : 10.0.0.11/24    ipv6 fda3:7a3b:6111::11/64      
+PC n° 1 : 10.0.0.10/24    ipv6 fdd3:9430:138e::10/64   
+PC n° 2 : 10.0.0.11/24    ipv6 fdd3:9430:138e::11/64      
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/3a5ce3c0-ebfc-46ca-8c8e-04ecdd2c9f84)
+______
+**Configuration ip dynamique sur le PC n°1**   
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/1392d376-0da2-4660-9d26-827b91819c39)
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/2a4473ab-1a0b-4bfa-8d51-9188b6b3e03f)
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/c2b89aa1-857c-4280-99d0-fe9d712acadf)
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/e1818d42-0529-47a1-bcbe-e2d3cd8a2b6f)
+**Configuration ip statique sur le PC ubuntu n°1**    
+#Fichier /etc/network/interfaces  
+auto enp0s3    
+#IPv4 configuration   
+iface enp0s3 inet static address 10.0.0.10/24     
+#IPv6 configuration   
+iface enp0s3 inet6 static address fdd3:9430:138e::10/64     
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/8ce5141e-dd78-493e-b034-68d72bc14d22)
+______
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/e6285877-3a73-498e-9564-8a6c4c54c439)
+**Exercice - étape 2**   
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/14f0c9b9-b526-41ee-a032-70c0fdcd5fa7)
+On ajoute maintenant un routeur (r0) à ce réseau. Ce routeur dispose de **2 interfaces réseaux**.   
+La première est sur le même réseau que les machines 10 et 11 avec la configuration suivante : •	10.0.0.1/24 et fdd3:9430:130e::1/64  
+La seconde est sur un second réseau ethernet qui accueillera d'autres routeurs plus tard. Sa configuration est : •	192.168.0.250/24 et fdd3:9430:192::250/64  
+En plus de configurer les interfaces réseaux de cette machine, il faut aussi activer le routage IPv4 et IPv6 au niveau du noyau.  
+À ce stade, les 3 interfaces présentent sur le réseau 10.0.0.0/24/fd<ton id de site>::/64 peuvent communiquer.  
+Valide ta configuration avec ping dans tous les sens.  
+Il reste une interface avec laquelle les machines 10 et 11 ne peuvent pas encore communiquer, c'est 192.168.0.250/24/fd<ton id de site>:192::250/64. En effet, elle n'est pas sur le même réseau, il faut indiquer une passerelle.  
+Cette passerelle, peut tout à fait être une passerelle par défaut puisqu'il n'y a qu'un routeur sur le réseau 10.0.0.0/24/fd<ton id de site>::/64.  
+Renseigne cette passerelle par défaut dans la table de routage sur les machines 10 et 11, puis vérifie qu'il est maintenant possible de joindre 192.168.0.250/24 et fd<ton id de site>:192::250/64 depuis les machines 10 et 11.   
 
+# Configuration dynamique de la table de routage sur la machine 10 ou 11  
+$ sudo ip route add default via 10.0.0.1 $ ping 192.168.0.250 PING 192.168.0.250 (192.168.0.250) 56(84) bytes of data. 64 bytes from 192.168.0.250: icmp_seq=1 ttl=64 time=1.71 msip  ^C $ sudo ip route add default via fdd3:9430:138e::1 $ ping fdd3:9430:138e:192::250 PING fdd3:9430:138e:192::250(fdd3:9430:138e:192::250) 56 data bytes 64 bytes from fdd3:9430:138e:192::250: icmp_seq=1 ttl=64 time=0.618 ms ^C  # Configuration statique de la machine 10 # Fichier /etc/network/interfaces auto ens4 iface ens4 inet static 	address 10.0.0.10 	netmask 255.255.255.0 	gateway 10.0.0.1  iface ens4 inet6 static 	address fdd3:9430:138e::10 	netmask 64 	gateway fdd3:9430:138e::1
