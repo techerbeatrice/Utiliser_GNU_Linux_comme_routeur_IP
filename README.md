@@ -8,7 +8,15 @@ exemple : pour que vm ubuntu **10.0.0.10/24** puisse communiquer avec vm windows
 
 ![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/7978ad7e-e0f3-46ca-8a00-eb2c72bc594e)
 
+auto enp0s3
+iface eth0 inet static
+    address 10.0.0.1
+    netmask 255.255.255.0
 
+auto enp0s8
+iface eth1 inet static
+    address 10.0.1.1
+    netmask 255.255.255.0
 
 
 
