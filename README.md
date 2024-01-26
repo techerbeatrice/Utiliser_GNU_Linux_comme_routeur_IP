@@ -8,11 +8,11 @@ Pour rappel, tu peux utiliser Unique Local IPv6 Generator.
 
 |  routeur0 debian interface 1|10.0.0.1/24 |fdd3:9430:138e::1/64  |pour activer le routage, édite le fichier /etc/sysctl.conf --> net.ipv4.ip_forward = 1 --> tape la commande sysctl -p /etc/sysctl.conf  |   |
 |---|---|---|---|---|
-| pc1 ubuntu | 10.0.0.10/24  |fdd3:9430:138e::10/64   | ip address add **10.0.0.10/24 dev enp0s3**  |ip route add default via **10.0.0.1** --> ip route add default via **fdd3:9430:138e::1** --> ping **192.168.0.250/24** --> ping **fdd3:9430:138e:192::250**|
+| pc1 ubuntu | 10.0.0.10/24  |fdd3:9430:138e::10/64   | ip address add **10.0.0.10/24 dev enp0s3** --> ip address add **fdd3:9430:138e::10/64 dev enp0s3**  |ip route add default via **10.0.0.1** --> ip route add default via **fdd3:9430:138e::1** --> ping **192.168.0.250/24** --> ping **fdd3:9430:138e:192::250**|
 |  pc2 windows | 10.0.0.11/24  |fdd3:9430:138e::11/64  | ipconfig **10.0.0.11 255.2555.255.0**  |netsh interface ipv4 add route 0.0.0.0/0 **10.0.0.1** --> netsh interface ipv6 add route **::0 fdd3:9430:138e::1** --> ping **192.168.0.250/24** --> ping **fdd3:9430:138e:192::250** |
 | **routeur0 debian inferface 2** |**192.168.0.250/24**  |**fdd3:9430:138e:192::250/64**  |pour activer le routage, édite le fichier /etc/sysctl.conf --> net.ipv4.ip_forward = 1 --> tape la commande sysctl -p /etc/sysctl.conf   |   |   |
 | **routeur1 debian inferface 1** |**192.168.0.251/24**  |**fdd3:9430:138e:192::251/64**  |   |   |   |
-| pc3 ubuntu | 10.0.1.12/24  |fdd3:9430:138e::12/64   | ip address add **10.0.0.12/24 dev enp0s3**  |ip route add default via **10.0.1.1** --> ip route add default via **fdd3:9430:138e::10** --> ping **192.168.0.250/24** --> ping **fdd3:9430:138e:192::250**|
+| pc3 ubuntu | 10.0.1.12/24  |fdd3:9430:138e::12/64   | ip address add **10.0.0.12/24 dev enp0s3** --> ip address add **fdd3:9430:138e::12/64 dev enp0s3**  |ip route add default via **10.0.1.1** --> ip route add default via **fdd3:9430:138e::10** --> ping **192.168.0.250/24** --> ping **fdd3:9430:138e:192::250**|
 | **routeur1 debian inferface 2** |**10.0.1.1/24**  |**fdd3:9430:138e:1::1/64**  |   |   |   |
 | **routeur2 debian inferface 1** |**192.168.0.252/24**  |**fdd3:9430:138e:192::252/64**  |pour activer le routage, édite le fichier /etc/sysctl.conf --> net.ipv4.ip_forward = 1 --> tape la commande sysctl -p /etc/sysctl.conf   |   |   |
 | **routeur2 debian inferface 2** |**10.0.2.1/24**  |**fdd3:9430:138e:2::1/64**  |   |   |   |
