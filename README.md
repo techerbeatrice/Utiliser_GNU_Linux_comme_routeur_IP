@@ -1,19 +1,21 @@
 # Utiliser GNU/Linux comme routeur IP
 
-exemple : pour que vm ubuntu **10.0.1.10/24** puisse communiquer avec vm windows **10.0.2.10/24** via routeur debian à interface lan1 **10.0.1.1/24** et à interface lan2 **10.0.2.1/24**   
+exemple : pour que vm ubuntu **10.0.1.10/24** puisse communiquer avec vm windows **10.0.2.10/24** via routeur debian   
+
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/cf4040fd-d67e-4c39-93f0-58b7eafeb268)
+
+
+_____
+
+
 
 ![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/d448c210-a9da-4f8c-a318-60aff15b6fa6)
 
-auto enp0s3   
-iface enp0s3 inet static   
-    address 10.0.1.1   
-    netmask 255.255.255.0   
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/40d6c28e-1e2a-4ec0-abc5-fc34d1d49fc4)
+ 
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/b8e73725-18f5-4c8f-951e-ddc0431aa615)
 
-auto enp0s8    
-iface enp0s8 inet static    
-    address 10.0.2.1   
-    netmask 255.255.255.0    
-
+![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/287a23cf-bb52-455c-bb4e-5fabad36d875)
 
 
 Commence par construire un réseau physique avec 2 machines et fait communiquer ces 2 machines avec IPv4 et IPv6.
