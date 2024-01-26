@@ -1,27 +1,10 @@
 # Utiliser GNU/Linux comme routeur IP
 
-exemple : pour que vm ubuntu **10.0.0.10/24** puisse communiquer avec vm windows **10.0.1.10/24** via routeur debian à interface lan1 **10.0.0.1/24** et à interface lan2 **10.0.1.0/24**   
+exemple : pour que vm ubuntu **10.0.1.10/24** puisse communiquer avec vm windows **10.0.2.10/24** via routeur debian à interface lan1 **10.0.1.1/24** et à interface lan2 **10.0.2.1/24**   
 
 ![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/d448c210-a9da-4f8c-a318-60aff15b6fa6)
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/8f571db4-1792-46da-be01-2c08a4a5f271)
 
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/7978ad7e-e0f3-46ca-8a00-eb2c72bc594e)
-
-auto enp0s3
-iface eth0 inet static
-    address 10.0.0.1
-    netmask 255.255.255.0
-
-auto enp0s8
-iface eth1 inet static
-    address 10.0.1.1
-    netmask 255.255.255.0
-
-
-
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/79a318ae-f79b-47de-bd94-65273fda3d17)
-![image](https://github.com/techerbeatrice/Utiliser_GNU_Linux_comme_routeur_IP/assets/138071140/c7559a49-ae64-4bc4-9af2-67984e4f8b30)
 
 
 
